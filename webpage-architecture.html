@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fake Webpage Architecture</title>
+    <style>
+      :root {
+        --bg: #f4f7fb;
+        --panel: #ffffff;
+        --primary: #2d6cdf;
+        --primary-dark: #1d4fb3;
+        --accent: #e8f1ff;
+        --text: #1d2433;
+        --muted: #667085;
+        --border: #dfe6f1;
+        --shadow: 0 10px 25px rgba(17, 24, 39, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      .container {
+        width: min(1200px, 90%);
+        margin: 0 auto;
+      }
+
+      header {
+        background: var(--panel);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 0;
+      }
+
+      .logo {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+      }
+
+      nav {
+        display: flex;
+        gap: 22px;
+        align-items: center;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .nav-button {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 8px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.3fr 0.7fr;
+        gap: 28px;
+        padding: 60px 0 40px;
+        align-items: center;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(2.2rem, 4vw, 4rem);
+        line-height: 1.1;
+        margin: 0 0 18px;
+      }
+
+      .hero-copy p {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--muted);
+        margin: 0 0 24px;
+      }
+
+      .cta-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .primary-btn,
+      .secondary-btn {
+        border-radius: 10px;
+        padding: 14px 20px;
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .primary-btn {
+        background: var(--primary);
+        color: white;
+      }
+
+      .secondary-btn {
+        background: var(--accent);
+        color: var(--primary-dark);
+      }
+
+      .hero-card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        padding: 24px;
+      }
+
+      .mock-window {
+        background: #eef3ff;
+        border-radius: 12px;
+        padding: 16px;
+        min-height: 260px;
+        border: 1px solid var(--border);
+      }
+
+      .window-bar {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #c7d2fe;
+      }
+
+      .dot:nth-child(1) { background: #fca5a5; }
+      .dot:nth-child(2) { background: #fcd34d; }
+      .dot:nth-child(3) { background: #86efac; }
+
+      .mock-box {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 14px;
+        margin-bottom: 12px;
+      }
+
+      .bar {
+        height: 12px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #dbeafe, #bfdbfe);
+        margin-bottom: 10px;
+      }
+
+      .bar.short { width: 45%; }
+      .bar.medium { width: 70%; }
+      .bar.long { width: 88%; }
+
+      .section-title {
+        text-align: center;
+        margin: 30px 0 20px;
+        font-size: 2rem;
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+        padding: 20px 0 60px;
+      }
+
+      .feature-card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 24px;
+      }
+
+      .feature-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 14px;
+      }
+
+      .content-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 24px;
+        padding-bottom: 70px;
+      }
+
+      .main-panel,
+      .sidebar {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 26px;
+      }
+
+      .article {
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 18px;
+        margin-bottom: 18px;
+      }
+
+      .article:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .article h3 {
+        margin: 0 0 10px;
+      }
+
+      .article p,
+      .sidebar p {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .sidebar li {
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      footer {
+        background: #122033;
+        color: #dfeaf9;
+        padding: 26px 0;
+      }
+
+      .footer-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 780px) {
+        .hero,
+        .features,
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+
+        nav {
+          gap: 10px;
+          flex-wrap: wrap;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container topbar">
+        <div class="logo">Skyline Studio</div>
+        <nav>
+          <a href="#">Home</a>
+          <a href="#">Features</a>
+          <a href="#">Work</a>
+          <a href="#">Pricing</a>
+          <button class="nav-button">Get Started</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div class="hero-copy">
+          <h1>Build a strong digital presence.</h1>
+          <p>
+            This fake webpage architecture shows a modern homepage layout with a
+            clear header, hero section, feature cards, content blocks, and a
+            sidebar for quick navigation and supporting information.
+          </p>
+          <div class="cta-row">
+            <a href="#" class="primary-btn">Start Project</a>
+            <a href="#" class="secondary-btn">View Demo</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="mock-window">
+            <div class="window-bar">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+
+            <div class="mock-box">
+              <div class="bar long"></div>
+              <div class="bar medium"></div>
+              <div class="bar short"></div>
+            </div>
+
+            <div class="mock-box">
+              <div class="bar medium"></div>
+              <div class="bar short"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <h2 class="section-title">Core Features</h2>
+
+      <section class="features">
+        <article class="feature-card">
+          <div class="feature-icon">01</div>
+          <h3>Responsive Layout</h3>
+          <p>
+            Clean sections adapt properly across desktop, tablet, and mobile screens.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">02</div>
+          <h3>Clear Navigation</h3>
+          <p>
+            Top-level links help visitors quickly move between major sections.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">03</div>
+          <h3>Strong Visual Hierarchy</h3>
+          <p>
+            Headings, spacing, and cards guide attention to important content.
+          </p>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <div class="main-panel">
+          <article class="article">
+            <h3>Homepage Structure</h3>
+            <p>
+              The page begins with a masthead and navigation, then transitions into a
+              compelling hero section with action buttons and a visual mockup.
+            </p>
+          </article>
+
+          <article class="article">
+            <h3>Content Blocks</h3>
+            <p>
+              Important information is grouped into feature cards and article-style
+              content areas to keep the layout readable and organized.
+            </p>
+          </article>
+
+          <article class="article">
+            <h3>Call to Action</h3>
+            <p>
+              A strong CTA helps direct users toward the next step, whether that be
+              booking a demo, contacting the brand, or exploring products.
+            </p>
+          </article>
+        </div>
+
+        <aside class="sidebar">
+          <h3>Quick Links</h3>
+          <ul>
+            <li>Overview</li>
+            <li>Team</li>
+            <li>Projects</li>
+            <li>Case Studies</li>
+            <li>Contact</li>
+          </ul>
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-wrap">
+        <div>© 2026 Skyline Studio</div>
+        <div>Built for a fake webpage architecture example</div>
+      </div>
+    </footer>
+  </body>
+</html>
